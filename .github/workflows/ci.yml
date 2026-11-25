@@ -1,0 +1,38 @@
+name: Ultra Rate-Limit CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  verify:
+    name: Test & Benchmark Verification Gate
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x, 22.x]
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Execute Full Test Suite (5 Algorithms + Sr FE Client)
+        run: node --experimental-strip-types tests/run_tests.ts
+
+      - name: Execute Comprehensive Architecture Benchmarks
+        run: node --experimental-strip-types benchmarks/run_audit_benchmarks.ts
+
+      - name: Validate Docker Container Build & Healthcheck
+        run: |
+          docker build -t ultra-rate-limit-mesh:ci .
+          docker run -d --name test_instance -p 3000:3000 ultra-rate-limit-mesh:ci
+          sleep 4
+          curl -f http://127.0.0.1:3000/health || exit 1
+          docker stop test_instance
