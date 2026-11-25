@@ -132,6 +132,19 @@ Output:
 
 ---
 
+## 📈 Ecosystem & Architecture Benefits
+
+![Rate Limiting Architecture & Growth Benefits](assets/rate-limiting-benefits.jpg)
+
+Distributed systems require layered resilience guarantees to protect origin infrastructure while delivering smooth user experiences under peak loads.
+
+---
+
 ## 📄 License
 
 Distributed under the MIT License. Developed for high-concurrency systems by Amz34.
+
+---
+
+Part of [my always-on agent stack](https://github.com/Amz34) · [Awesome Agent Infrastructure](https://github.com/Amz34/awesome-agent-infrastructure) (135 live-checked building blocks).
+
