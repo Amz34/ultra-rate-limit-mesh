@@ -1,0 +1,24 @@
+{
+  "name": "ultra-rate-limit-mesh",
+  "version": "1.0.0",
+  "description": "Enterprise-Grade Distributed Rate Limiting & Frontend Resilience Mesh",
+  "main": "src/server.ts",
+  "type": "module",
+  "scripts": {
+    "start": "node --experimental-strip-types src/server.ts",
+    "test": "node --experimental-strip-types tests/run_tests.ts",
+    "benchmark": "node --experimental-strip-types benchmarks/run_audit_benchmarks.ts"
+  },
+  "keywords": [
+    "rate-limiting",
+    "token-bucket",
+    "sliding-window-counter",
+    "leaky-bucket",
+    "sliding-window-log",
+    "fixed-window",
+    "sr-fe-resilience",
+    "cloudflare-worker"
+  ],
+  "author": "Antigravity Enterprise FDE",
+  "license": "MIT"
+}

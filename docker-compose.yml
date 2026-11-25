@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  rate-limit-gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ultra_rate_limit_mesh
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
